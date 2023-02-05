@@ -145,8 +145,6 @@ class Conduit
                     player.body.x,player.body.y,
                     this.body.x,this.body.y-20)
 
-
-                    
                 for(let i =0;i<8;i++)
                 {
                     let lerpt = (millis()*0.001  + i/8)%1.0

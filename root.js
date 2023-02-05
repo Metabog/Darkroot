@@ -93,7 +93,7 @@ class RootNode
 
     this.energy = 0.0
 
-    this.chaseenergy = random(0.0,1.0)<0.25
+    this.chaseenergy = random(0.0,1.0)<0.1
 
     if(parent!= null)
     {
@@ -164,7 +164,6 @@ class RootNode
               this.dead = true
               return
             }
-            
 
             //EXPERIMENTAL
             //ALLOW ROOT TO COLLECT ENERGy
@@ -205,8 +204,6 @@ class RootNode
             {
                 chase_target = closest_energy
             }
-
-
 
             let chance_to_branch = random(0.0,1.0)>0.7
   

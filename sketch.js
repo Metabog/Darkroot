@@ -4,6 +4,8 @@ let tex
 let test;
 let canvas;
 
+let instructionMessage
+
 function loadImageBv(path)
 {
   let img = loadImage(path);
@@ -54,7 +56,7 @@ function preload() {
   portalSprites.push(loadImage("Data/Sprites/portal1.png"))
 
   winScreen = loadImage("Data/Sprites/WinScreen.png")
-
+  instructionMessage = loadImage("Data/Sprites/Instructions.png")
   font = loadFont("Data/AcPlus_AST_PremiumExec.ttf")
 }
 
@@ -78,7 +80,7 @@ function setup() {
 
   //create terrain tilemap
   makeTerrain()
-
+  instructions_fade=4.0
   camx_at_start = player.body.x
   camy_at_start = player.body.y
 
@@ -102,6 +104,8 @@ let GAME_STATE_LORE = 3
 let GAME_STATE_WINRAR = 4
 
 let game_state = 0
+
+let instructions_fade = 4.0
 
 function doGameState()
 {
@@ -190,6 +194,14 @@ function doGameState()
       player.update()
       player.draw()
     
+      instructions_fade -= 0.01
+
+      instructions_fade = max(instructions_fade,0)
+
+      if(instructions_fade>0.0)
+        pg.image(instructionMessage, portal.body.x+64, portal.body.y)
+
+
       for(let t of turrets)
       {
         turret_quadtree.insert(t)
