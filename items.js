@@ -76,7 +76,7 @@ class Energy
             {    
                 player.energy += energy_per_particle
                 this.collected = true
-
+                energyUiGlow = 1.0
 
                 pickupsounds[(int)(random(0,3))].play()
             }
@@ -135,7 +135,7 @@ class Conduit
             pg.rect(this.body.x-16 + pw_w/2, this.body.y+42,pw_w,4)
         }
 
-        if(d<42)
+        if(d<54)
         {
             if(this.power<1.0)
             {
@@ -145,15 +145,17 @@ class Conduit
                     player.body.x,player.body.y,
                     this.body.x,this.body.y-20)
 
-                for(let i =0;i<8;i++)
+                pg.image(chargingtext, player.body.x+32,0)
+
+                for(let i =0;i<4;i++)
                 {
-                    let lerpt = (millis()*0.001  + i/8)%1.0
+                    let lerpt = (millis()*0.002  + i/8)%1.0
 
                     let cx = lerp(player.body.x, this.body.x, lerpt)
                     let cy = lerp(player.body.y, this.body.y-20, lerpt)
                     pg.noStroke()
-                    pg.fill(255,255,200)
-                    pg.circle(cx,cy,3)
+                    pg.fill(255,255,220)
+                    pg.circle(cx,cy,5)
                 }
             }
 
@@ -179,7 +181,7 @@ class Conduit
                 this.powered = true
 
                 screenshake_amt = 1.0
-
+                energyUiGlow = 1.0
                 player.energy += 0.5
                 player.energy = min(player.energy,1.0)
             }

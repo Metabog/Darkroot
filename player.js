@@ -25,6 +25,10 @@ class Puff
 
 let turretOutlineSprite = null
 
+let lastChargeTextX
+let lastChargeTextY
+let chargeTextScroll = 1.0
+
 class Player
 {
     constructor(x, y) {
@@ -103,7 +107,12 @@ class Player
   
     update()
     {
+
+      chargeTextScroll+=0.02
       
+      if(chargeTextScroll<1.0)
+        pg.image(noEnergyText, lastChargeTextX,lastChargeTextY-chargeTextScroll*32)
+
       if(this.health<=0)
       {
         this.restartCountdown+=dt
@@ -157,7 +166,9 @@ class Player
       let wx = screenToWorldX(mouseX)
       let wy = screenToWorldY(mouseY)
 
-      if(queryBlockUnderWorldPos(wx,wy) != null)
+      let qb = queryBlockUnderWorldPos(wx,wy)
+
+      if(qb != null && qb.has_turret == false)
       { 
         let qx = round(wx/BLOCK_SIZE)*BLOCK_SIZE
         let qy = round(wy/BLOCK_SIZE)*BLOCK_SIZE
@@ -167,6 +178,7 @@ class Player
           //smooth_turret_outline_qx = qx
           //smooth_turret_outline_qy = qy
         }
+
 
         smooth_turret_outline_qx = lerp(smooth_turret_outline_qx,qx,0.4)
         smooth_turret_outline_qy = lerp(smooth_turret_outline_qy,qy,0.4)
@@ -181,8 +193,19 @@ class Player
           {
             let nTurret = new Turret(qx, qy)
             turrets.push(nTurret)
-
+            qb.has_turret=true
+            energyUiGlow = 1.0
             player.energy -= energyPerTurret
+          }
+        }
+        else{
+
+          if(mouseJustClicked)
+          {
+            lastChargeTextX = wx
+            lastChargeTextY = wy
+            chargeTextScroll=0.0
+            noChargeSfx.play()
           }
         }
       }

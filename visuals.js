@@ -33,6 +33,8 @@ let time_last_particle_added = -1000
 
 let randseq1 = []
 
+let energyUiGlow = 0.0
+
 function doStarLayer(amt,sz,offs)
 {
   
@@ -69,25 +71,28 @@ let uiFrameSprite = null
 
 let maxEnergy = 1.0
 
-
 function doEnergyMeter()
 {
     let energyheight = 50
     let energyamt = player.energy*50
 
     pg.rectMode(CENTER)
-    pg.fill(10,200,10)
+    pg.fill(lerp(10,255,energyUiGlow),lerp(120,255,energyUiGlow),lerp(10,255,energyUiGlow))
     pg.noStroke()
-    pg.rect(291,35 + energyheight/2 - energyamt/2,4,energyamt);
+    pg.rect(291,35 + energyheight/2 - energyamt/2, 4 + energyUiGlow, energyamt);
 }
 
 function doUI()
 {
+    energyUiGlow -= 0.01
+    energyUiGlow = max(energyUiGlow,0)
+
     if(uiFrameSprite==null)
     uiFrameSprite=loadImage("Data/Sprites/UIFrame.png")
 
-    doEnergyMeter()
     pg.image(uiFrameSprite,0,0,offscreen_width,offscreen_height)
+
+    doEnergyMeter()
 }
 
 function doCrispUI()

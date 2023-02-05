@@ -222,7 +222,7 @@ class RootNode
             for(let i = 0; i< (chance_to_branch ? 2 : 1); i++)
             {
               
-                let ndist = random(2,8) * (1.0+ this.energy*1.5)
+                let ndist = random(2,7) * (1.0+ this.energy*1.5)
                 let newx = cos(this.angle)*ndist + this.body.x
                 let newy = sin(this.angle)*ndist + this.body.y
                 let newang = this.angle + random(-0.9,0.9)

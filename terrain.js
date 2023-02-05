@@ -12,6 +12,7 @@ class Block
   constructor(type)
   {
      this.type = type
+     this.has_turret=false
   }
 }
 

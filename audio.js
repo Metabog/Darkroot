@@ -14,6 +14,7 @@ let powerupsfx = null
 let winsound = null
 
 let rootcollects = []
+let noChargeSfx = null
 
 function playSoundSpatial(sound,x,y)
 {
@@ -76,6 +77,8 @@ function setupAudio()
     {
       r.volume = 0.7
     }
+
+    noChargeSfx = new Audio('Data/Audio/noCharge.wav')
 }
 
 let music_started = false

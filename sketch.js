@@ -23,6 +23,8 @@ let rootDeathImage
 let rootStartScreen
 let rootLore
 let winScreen
+let chargingtext
+let noEnergyText
 
 function preload() {
   setupAudio()
@@ -58,6 +60,11 @@ function preload() {
   winScreen = loadImage("Data/Sprites/WinScreen.png")
   instructionMessage = loadImage("Data/Sprites/Instructions.png")
   font = loadFont("Data/AcPlus_AST_PremiumExec.ttf")
+
+  chargingtext = loadImage("Data/Sprites/texts1.png")
+  noEnergyText = loadImage("Data/Sprites/texts0.png")
+
+  noEnergyText
 }
 
 function setup() {
@@ -118,8 +125,8 @@ function doGameState()
         background(0,0,0)
         image(rootStartScreen,280,120)
         
-        if(keyIsDown(70))
-          game_state = GAME_STATE_LORE
+        //if(keyIsDown(70))
+        //  game_state = GAME_STATE_LORE
 
         if(mouseJustClicked)
         {
@@ -143,7 +150,7 @@ function doGameState()
     {
       //death
       background(0)
-      image(rootDeathImage,160,120)
+      image(rootDeathImage,260,120)
 
       if(mouseJustClicked)
       {
