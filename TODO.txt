@@ -1,0 +1,15 @@
+TODO LIST:
+
+Player energy controls your speed
+Spawning turrets takes energy
+Collect energy from world as items
+
+
+Visit all power conduits
+Return to central portal to escape
+
+
+Player death animation/screenshake/damage visuals
+Audio for player damage, turret shoot
+
+Turret health should go down over time slowly, but much faster if touched by root
